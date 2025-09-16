@@ -1,104 +1,105 @@
-# Gestor de Clases (orientado a M¨²sica) ??
+# Gestor de Clases (orientado a MÃºsica) ğŸµ
 
-Un sistema de gesti¨®n para escuelas de m¨²sica que permite administrar profesores, estudiantes, instrumentos y clases.
+Un sistema de gestiÃ³n para escuelas de mÃºsica que permite administrar profesores, estudiantes, instrumentos y clases.
 
-## ?? Descripci¨®n
+## ğŸ“‹ DescripciÃ³n
 
-Este sistema est¨¢ dise?ado para facilitar la gesti¨®n de una escuela de m¨²sica, permitiendo:
-- Registro y gesti¨®n de profesores y estudiantes
-- Programaci¨®n de clases por instrumento
+Este sistema estÃ¡ diseÃ±ado para facilitar la gestiÃ³n de una escuela de mÃºsica, permitiendo:
+- Registro y gestiÃ³n de profesores y estudiantes
+- ProgramaciÃ³n de clases por instrumento
 - Control de disponibilidad de profesores
 - Seguimiento de asistencia a clases
-- Gesti¨®n de estados de clases (programadas, completadas, canceladas)
+- GestiÃ³n de estados de clases (programadas, completadas, canceladas)
 
-## ?? Funcionalidades Principales
+## ğŸ¯ Funcionalidades Principales
 
-- **Gesti¨®n de Usuarios**: Administradores, profesores y estudiantes con roles espec¨ªficos
-- **Programaci¨®n de Clases**: Sistema flexible para programar clases individuales o grupales
+- **GestiÃ³n de Usuarios**: Administradores, profesores y estudiantes con roles especÃ­ficos
+- **ProgramaciÃ³n de Clases**: Sistema flexible para programar clases individuales o grupales
 - **Control de Disponibilidad**: Los profesores definen sus horarios disponibles
-- **Inscripciones**: Los estudiantes pueden inscribirse a m¨²ltiples clases
+- **Inscripciones**: Los estudiantes pueden inscribirse a mÃºltiples clases
 - **Seguimiento**: Control de asistencia y estados de las clases
-- **Multi-instrumento**: Los profesores pueden ense?ar m¨²ltiples instrumentos
+- **Multi-instrumento**: Los profesores pueden enseÃ±ar mÃºltiples instrumentos
 
-## ???Estructura de la Base de Datos
+## ğŸ—„ï¸ Estructura de la Base de Datos
 
-Para detalles completos sobre la estructura de la base de datos, consultar [README.md](db/README.md).
+Para detalles completos sobre las reglas de negocio, consultar [README.md](db/README.md).
 
-## ?? Estructura del Proyecto
+## ğŸ“ Estructura del Proyecto
 
 ```
 gdt/
-©À©¤©¤ README.md					# Este archivo
-©À©¤©¤ docs/
-©¦   ©À©¤©¤ reglas_de_negocio.md	# Reglas de negocio del sistema
-©¦   ©À©¤©¤ diccionario_datos.md	# Detalles t¨¦cnicos de las tablas
-©¦   ©¸©¤©¤ diagrama-er.png			# Diagrama entidad-relaci¨®n
-©À©¤©¤ db/
-©¦   ©À©¤©¤ README.md				# Estructura de la base de datos
-©¦   ©¸©¤©¤ scripts/
-©¦       ©À©¤©¤ database-setup.sql		# Script de creaci¨®n de BD
-©¦       ©À©¤©¤ datos-ejemplo.sql		# Datos de prueba
-©¦       ©¸©¤©¤ consultas-comunes.sql	# Queries frecuentes
-©À©¤©¤ tests/
-©¦   ©¸©¤©¤ db/
-©¦       ©¸©¤©¤ 01-integridad.sql		# Tests de integridad de datos
-©À©¤©¤ src/
-©¦   ©À©¤©¤ backend/   (AppointmentApi)		# API del proyecto (.NET 8)
-©¦   ©¸©¤©¤ frontend/  (turnos/web)			# Front con React
+â”œâ”€â”€ README.md                  # Este archivo
+â”œâ”€â”€ docs/
+â”‚   â”œâ”€â”€ reglas_de_negocio.md   # Reglas de negocio del sistema
+â”‚   â”œâ”€â”€ diccionario_datos.md   # Detalles tÃ©cnicos de las tablas
+â”‚   â””â”€â”€ diagrama-er.png        # Diagrama entidad-relaciÃ³n
+â”œâ”€â”€ db/
+â”‚   â”œâ”€â”€ README.md
+â”‚   â””â”€â”€ scripts/
+â”‚       â”œâ”€â”€ database-setup.sql       # Script de creaciÃ³n de BD
+â”‚       â”œâ”€â”€ datos-ejemplo.sql        # Datos de prueba
+â”‚       â””â”€â”€ consultas-comunes.sql    # Queries frecuentes
+â”œâ”€â”€ tests/
+â”‚   â””â”€â”€ db/
+â”‚       â””â”€â”€ 01-integridad.sql        # Tests de integridad de datos
+â”œâ”€â”€ src/
+â”‚   â”œâ”€â”€ backend/
+â”‚   â””â”€â”€ frontend/
+
 ```
 
-## ?? Caracter¨ªsticas T¨¦cnicas
+## ğŸ” CaracterÃ­sticas TÃ©cnicas
 
-### ¨ªndices Optimizados
-- B¨²squedas por profesor y fecha
+### Ãndices Optimizados
+- BÃºsquedas por profesor y fecha
 - Consultas de disponibilidad
 - Relaciones entre tablas
 
 ### Validaciones Implementadas
-- ?Emails ¨²nicos para profesores y estudiantes
-- ?Horarios de clases v¨¢lidos (fin > inicio)
-- ?Fechas de actividad coherentes
-- ?Profesores solo ense?an instrumentos registrados
-- ?Un instrumento primario por profesor m¨¢ximo
+- âœ… Emails Ãºnicos para profesores y estudiantes
+- âœ… Horarios de clases vÃ¡lidos (fin > inicio)
+- âœ… Fechas de actividad coherentes
+- âœ… Profesores solo enseÃ±an instrumentos registrados
+- âœ… Un instrumento primario por profesor mÃ¡ximo
 
 ### Integridad Referencial
-- Eliminaci¨®n en cascada para inscripciones
-- Prevenci¨®n de eliminaci¨®n de datos con dependencias
+- EliminaciÃ³n en cascada para inscripciones
+- PrevenciÃ³n de eliminaciÃ³n de datos con dependencias
 - Relaciones N:M correctamente implementadas
 
-## ?? Reglas de Negocio
+## ğŸ¤ Reglas de Negocio
 
 Para detalles completos sobre las reglas de negocio, consultar [reglas_de_negocio.md](docs/reglas_de_negocio.md).
 
 **Principales:**
-- Un profesor solo puede dar clases de instrumentos que ense?a
+- Un profesor solo puede dar clases de instrumentos que enseÃ±a
 - Las clases deben programarse dentro de la disponibilidad del profesor
 - No pueden haber clases solapadas para el mismo profesor
-- Los estudiantes pueden inscribirse a m¨²ltiples clases
+- Los estudiantes pueden inscribirse a mÃºltiples clases
 
-## ?? Pr¨®ximas Mejoras
+## ğŸ“ˆ PrÃ³ximas Mejoras
 
-- [ ] Sistema de pagos y facturaci¨®n
-- [ ] Notificaciones autom¨¢ticas
+- [ ] Sistema de pagos y facturaciÃ³n
+- [ ] Notificaciones automÃ¡ticas
 - [ ] Calendario integrado
 - [ ] Reportes de asistencia
-- [ ] API REST para integraci¨®n con aplicaciones
+- [ ] API REST para integraciÃ³n con aplicaciones
 
-## ?? Problemas Conocidos
+## ğŸ› Problemas Conocidos
 
-- La validaci¨®n de solapamiento de horarios se maneja en la capa de aplicaci¨®n
+- La validaciÃ³n de solapamiento de horarios se maneja en la capa de aplicaciÃ³n
 - Las zonas horarias deben manejarse cuidadosamente (UTC en BD)
 
-## ?? Contacto y Soporte
+## ğŸ“ Contacto y Soporte
 
-Si tienes preguntas o encuentras alg¨²n problema:
+Si tienes preguntas o encuentras algÃºn problema:
 - Crear un issue en GitHub
 - Contactar al equipo de desarrollo
 
-## ?? Licencia
+## ğŸ“„ Licencia
 
-[Especificar la licencia de tu proyecto]
+[Especificar licencia]
 
 ---
 
-?Si este proyecto te resulta ¨²til, ?no olvides darle una estrella en GitHub!
+â­ Si este proyecto te resulta Ãºtil, Â¡no olvides darle una estrella en GitHub!
