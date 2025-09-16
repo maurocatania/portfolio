@@ -3,7 +3,7 @@
 ## 🗄️Estructura de la Base de Datos
 
 ### Diagrama Entidad-Relación
-![Diagrama ER](docs/gdt_diagram.png)
+![Diagrama ER](../docs/gdt_diagram.png)
 
 ### Tablas Principales
 
