@@ -19,6 +19,13 @@ CREATE TABLE dbo.LessonState (
     CONSTRAINT UQ_LessonState_Description UNIQUE (description)
 );
 
+CREATE TABLE dbo.LessonStudentState (
+    state_id    INT IDENTITY(1,1) NOT NULL,
+    description VARCHAR(15) NOT NULL,
+    CONSTRAINT PK_LessonState PRIMARY KEY CLUSTERED (state_id),
+    CONSTRAINT UQ_LessonState_Description UNIQUE (description)
+);
+
 CREATE TABLE dbo.AppUser (
   user_id       INT IDENTITY(1,1) PRIMARY KEY,
   role          VARCHAR(20) NOT NULL
@@ -143,9 +150,11 @@ CREATE TABLE dbo.LessonStudent (
     student_id INT NOT NULL,
     enrolled_at DATETIME2 NOT NULL CONSTRAINT DF_LS_EnrolledAt DEFAULT SYSUTCDATETIME(),
     attended   BIT NOT NULL CONSTRAINT DF_LS_Attended DEFAULT (0),
+    state_id INT NOT NULL
     CONSTRAINT PK_LessonStudent PRIMARY KEY (lesson_id, student_id),
     CONSTRAINT FK_LS_Lesson  FOREIGN KEY (lesson_id)  REFERENCES dbo.Lesson(lesson_id) ON DELETE CASCADE,
-    CONSTRAINT FK_LS_Student FOREIGN KEY (student_id) REFERENCES dbo.Student(student_id)
+    CONSTRAINT FK_LS_Student FOREIGN KEY (student_id) REFERENCES dbo.Student(student_id),
+    CONSTRAINT FK_LS_State FOREIGN KEY (state_id) REFERENCES dbo.LessonStudentState(state_id)
 );
 
 -- Índices de soporte
