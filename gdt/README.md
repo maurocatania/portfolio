@@ -24,6 +24,15 @@ Este sistema está diseñado para facilitar la gestión de una escuela de músic
 
 Para detalles completos sobre las reglas de negocio, consultar [README.md](db/README.md).
 
+## 🛡️ Validaciones y Triggers
+
+El sistema implementa validaciones a nivel de base de datos para garantizar integridad:
+- Triggers para validar capacidad de lecciones
+- Funciones auxiliares para consultas de disponibilidad
+- Vistas de monitoreo para administración
+
+Ver detalles completos en [triggers_y_validaciones.md](docs/triggers_y_validaciones.md).
+
 ## 📁 Estructura del Proyecto
 
 ```
@@ -36,9 +45,8 @@ gdt/
 ├── db/
 │   ├── README.md
 │   └── scripts/
-│       ├── database-setup.sql       # Script de creación de BD
-│       ├── datos-ejemplo.sql        # Datos de prueba
-│       └── consultas-comunes.sql    # Queries frecuentes
+│       ├── 01-create-tables.sql       # Script de creación de tablas
+│       └── 02-manage-lesson-capacity  # Script de creación de triggers, funciones y vistas específicas
 ├── tests/
 │   └── db/
 │       └── 01-integridad.sql        # Tests de integridad de datos
@@ -47,25 +55,6 @@ gdt/
 │   └── frontend/
 
 ```
-
-## 🔍 Características Técnicas
-
-### Índices Optimizados
-- Búsquedas por profesor y fecha
-- Consultas de disponibilidad
-- Relaciones entre tablas
-
-### Validaciones Implementadas
-- ✅ Emails únicos para profesores y estudiantes
-- ✅ Horarios de clases válidos (fin > inicio)
-- ✅ Fechas de actividad coherentes
-- ✅ Profesores solo enseñan instrumentos registrados
-- ✅ Un instrumento primario por profesor máximo
-
-### Integridad Referencial
-- Eliminación en cascada para inscripciones
-- Prevención de eliminación de datos con dependencias
-- Relaciones N:M correctamente implementadas
 
 ## 🤝 Reglas de Negocio
 

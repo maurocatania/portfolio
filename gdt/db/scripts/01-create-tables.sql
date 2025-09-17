@@ -101,14 +101,13 @@ CREATE TABLE dbo.ProfessorInstrument (
 -- Búsquedas por instrumento
 CREATE INDEX IX_PI_Instrument ON dbo.ProfessorInstrument(instrument_id);
 
--- (OPCIONAL) Asegurar un único instrumento primario por profesor
--- Requiere SQL Server 2008+ (índice filtrado)
+-- Asegurar un único instrumento primario por profesor
 CREATE UNIQUE INDEX UX_PI_PrimaryPerProfessor
 ON dbo.ProfessorInstrument(professor_id)
 WHERE is_primary = 1;
 
 -- =========================
--- Lesson (antes Class)
+-- Lesson
 -- =========================
 CREATE TABLE dbo.Lesson (
     lesson_id     INT IDENTITY(1,1) NOT NULL,
@@ -118,12 +117,14 @@ CREATE TABLE dbo.Lesson (
 	end_utc DATETIME2 NOT NULL,
     state_id      INT NOT NULL,
     lesson_date   DATETIME2 NOT NULL,
+    lesson_capacity INT NOT NULL,
     created_at    DATETIME2 NOT NULL CONSTRAINT DF_Lesson_CreatedAt DEFAULT SYSUTCDATETIME(),
     canceled_at   DATETIME2 NULL,        -- nullable: solo si se canceló
     CONSTRAINT PK_Lesson PRIMARY KEY CLUSTERED (lesson_id),
 
     CONSTRAINT FK_Lesson_State   FOREIGN KEY (state_id)   REFERENCES dbo.LessonState(state_id),
 	CONSTRAINT CK_Lesson_TimeRange CHECK (end_utc > start_utc),
+    CONSTRAINT CK_Lesson_Capacity CHECK (lesson_capacity > 0 AND lesson_capacity <= 50), -- límite básico
     -- Enforce: el profesor realmente enseña ese instrumento
     CONSTRAINT FK_Lesson_ProfInstr FOREIGN KEY (professor_id, instrument_id)
         REFERENCES dbo.ProfessorInstrument(professor_id, instrument_id) -- esto impedirá borrar un registro en ProfessorInstrument si existe una referencia en Lesson

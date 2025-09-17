@@ -95,6 +95,7 @@
 - Tienen fecha/hora de inicio y fin en UTC
 - La hora de fin debe ser posterior a la hora de inicio
 - Se registra automáticamente la fecha de creación
+- Cada clase tiene un cupo máximo
 
 ### 8.2 Estados y Cancelaciones
 - Cada clase tiene un estado definido
@@ -104,6 +105,10 @@
 ### 8.3 Restricciones de Horario
 - Un profesor no puede tener clases que se solapen en horario
 - La validación de solapamiento se maneja en la capa de servicio
+
+### 8.4 Cupo máximo
+- Se toma un enfoque híbrido para controlar el cupo máximo: trigger y validación de backend
+- Para ver más información sobre esto, ver [triggers_y_validaciones.md](triggers_y_validaciones.md)
 
 ## 9. Inscripciones a Clases (LessonStudent)
 

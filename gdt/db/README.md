@@ -43,11 +43,10 @@
 1. **Clonar el repositorio**
    ```bash
    git clone [https://github.com/maurocatania/portfolio.git]
-   cd sistema-clases-musica
    ```
 
 2. **Crear la base de datos**
-   - Ejecutar el script [database-setup.sql](db/database-setup.sql) en SQL Server Management Studio
+   - Ejecutar el script [01-create-tables.sql](db/database-setup.sql) en SQL Server Management Studio en una BD previamente creada
    - O usar la línea de comandos:
    ```bash
    sqlcmd -S [servidor] -d [base_de_datos] -i database-setup.sql
@@ -95,7 +94,8 @@ SELECT
     i.instrument_name AS instrumento,
     l.start_utc,
     l.end_utc,
-    ls.description AS estado
+    ls.description AS estado,
+    l.lesson_capacity AS cupo
 FROM Lesson l
 JOIN Professor p ON l.professor_id = p.professor_id
 JOIN Instrument i ON l.instrument_id = i.instrument_id
@@ -116,6 +116,8 @@ WHERE CAST(l.lesson_date AS DATE) = CAST(GETDATE() AS DATE);
 - ✅Fechas de actividad coherentes
 - ✅Profesores solo enseñan instrumentos registrados
 - ✅Un instrumento primario por profesor máximo
+- ✅Los únicos roles permitidos son: Admin, Professor y Student
+- ✅Las clases tienen un cupo máximo, que es validado tanto en BD (trigger) como en backend.
 
 ### Integridad Referencial
 - Eliminación en cascada para inscripciones
