@@ -74,11 +74,6 @@ Para detalles completos sobre las reglas de negocio, consultar [reglas_de_negoci
 - [ ] Reportes de asistencia
 - [ ] API REST para integración con aplicaciones
 
-## 🐛 Problemas Conocidos
-
-- La validación de solapamiento de horarios se maneja en la capa de aplicación
-- Las zonas horarias deben manejarse cuidadosamente (UTC en BD)
-
 ## 📞 Contacto y Soporte
 
 Si tienes preguntas o encuentras algún problema:
