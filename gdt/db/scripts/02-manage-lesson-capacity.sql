@@ -22,8 +22,8 @@ BEGIN
         INNER JOIN dbo.Lesson l ON i.lesson_id = l.lesson_id
         INNER JOIN (
             SELECT lesson_id, COUNT(*) as student_count
-            FROM dbo.LessonStudent 
-            WHERE lesson_id IN (SELECT lesson_id FROM inserted)
+            FROM dbo.LessonStudent ls
+            WHERE lesson_id IN (SELECT lesson_id FROM inserted) AND ls.state_id != 3 -- estado cancelado
             GROUP BY lesson_id
         ) sc ON l.lesson_id = sc.lesson_id
         WHERE sc.student_count > l.lesson_capacity
@@ -117,8 +117,9 @@ BEGIN
     FROM dbo.Lesson l
     LEFT JOIN (
         SELECT lesson_id, COUNT(*) as student_count
-        FROM dbo.LessonStudent 
+        FROM dbo.LessonStudent ls
         WHERE lesson_id = @lesson_id
+        AND ls.state_id != 3
         GROUP BY lesson_id
     ) sc ON l.lesson_id = sc.lesson_id
     WHERE l.lesson_id = @lesson_id;
@@ -139,7 +140,8 @@ SELECT
 FROM dbo.Lesson l
 LEFT JOIN (
     SELECT lesson_id, COUNT(*) as enrolled_students
-    FROM dbo.LessonStudent
+    FROM dbo.LessonStudent ls
+    WHERE ls.state_id != 3
     GROUP BY lesson_id
 ) sc ON l.lesson_id = sc.lesson_id
 WHERE l.canceled_at IS NULL;
